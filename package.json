@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node ."
-},
+  },
   "dependencies": {
     "@types/koa": "^2.0.47",
     "@types/koa-bodyparser": "^5.0.2",
@@ -15,7 +15,11 @@
     "koa-bodyparser": "^4.2.1",
     "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
+    "node": "^11.1.0",
+    "pg": "^7.6.1",
     "routing-controllers": "^0.7.7",
+    "ts": "^0.2.2",
+    "typeorm": "^0.2.9",
     "typescript": "^3.1.6"
   }
 }
