@@ -15,6 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
 const color = ['red', 'blue', 'green', 'yellow', 'magenta'];
+const defaultBoard = [
+    ['o', 'o', 'o'],
+    ['o', 'o', 'o'],
+    ['o', 'o', 'o']
+];
 let GameController = class GameController {
     async AllGames() {
         const games = await entity_1.default.find();
@@ -22,7 +27,16 @@ let GameController = class GameController {
     }
     createGame(games) {
         games.color = color[Math.floor(Math.random() * 5)];
+        games.board = defaultBoard;
         return games.save();
+    }
+    async updateGame(id, update) {
+        const games = await entity_1.default.findOne(id);
+        if (update.color && !color.includes(update.color))
+            throw new routing_controllers_1.MethodNotAllowedError('Pick another color');
+        if (!games)
+            throw new routing_controllers_1.NotFoundError('Cannot find game');
+        return entity_1.default.merge(games, update).save();
     }
 };
 __decorate([
@@ -38,6 +52,14 @@ __decorate([
     __metadata("design:paramtypes", [entity_1.default]),
     __metadata("design:returntype", void 0)
 ], GameController.prototype, "createGame", null);
+__decorate([
+    routing_controllers_1.Put('/games/:id'),
+    __param(0, routing_controllers_1.Param('id')),
+    __param(1, routing_controllers_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], GameController.prototype, "updateGame", null);
 GameController = __decorate([
     routing_controllers_1.JsonController()
 ], GameController);
