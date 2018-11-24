@@ -20,6 +20,10 @@ const defaultBoard = [
     ['o', 'o', 'o'],
     ['o', 'o', 'o']
 ];
+const moves = (board1, board2) => board1
+    .map((row, y) => row.filter((cell, x) => board2[y][x] !== cell))
+    .reduce((a, b) => a.concat(b))
+    .length;
 let GameController = class GameController {
     async AllGames() {
         const games = await entity_1.default.find();
@@ -36,6 +40,8 @@ let GameController = class GameController {
             throw new routing_controllers_1.MethodNotAllowedError('Pick another color');
         if (!games)
             throw new routing_controllers_1.NotFoundError('Cannot find game');
+        if (update.board && moves(games.board, update.board) >= 2)
+            throw new routing_controllers_1.BadRequestError('Hey! no cheating!');
         return entity_1.default.merge(games, update).save();
     }
 };

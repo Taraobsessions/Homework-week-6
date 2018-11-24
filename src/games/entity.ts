@@ -3,16 +3,16 @@ import { BaseEntity } from 'typeorm/repository/BaseEntity'
 
 @Entity()
 export default class Games extends BaseEntity {
-  
+
   @PrimaryGeneratedColumn()
   id?: number
 
-  @Column('text', {nullable:false})
+  @Column('text', { nullable: false })
   name: string
 
-  @Column('text', {nullable:false})
+  @Column('text', { nullable: false })
   color?: string
 
-  @Column('json', {nullable: true})
+  @Column('json', { nullable: true })
   board?: {}
 }
