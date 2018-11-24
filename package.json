@@ -1,0 +1,21 @@
+{
+  "name": "HW-W6",
+  "version": "1.0.0",
+  "main": "target/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+},
+  "dependencies": {
+    "@types/koa": "^2.0.47",
+    "@types/koa-bodyparser": "^5.0.2",
+    "@types/koa-multer": "^1.0.0",
+    "@types/koa-router": "^7.0.35",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-multer": "^1.0.2",
+    "koa-router": "^7.4.0",
+    "routing-controllers": "^0.7.7",
+    "typescript": "^3.1.6"
+  }
+}
